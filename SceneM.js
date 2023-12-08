@@ -21,6 +21,7 @@ var volume;
 var decr;
 var incr;
 var context;
+var fullscreen;
 var up;
 var down;
 var left;
@@ -42,6 +43,7 @@ class SceneM extends Phaser.Scene{
   create(){
     try{
       volume = parseInt(localStorage.getItem("volume")); // update volume sprite after setting it
+      fullscreen = parseInt(localStorage.getItem("fullscreen"));
       up = localStorage.getItem("up") ||  "null";    // check to see if controls have been set, otherwise go with default settings
       down = localStorage.getItem("down") || "null";
       left = localStorage.getItem("left") || "null";
@@ -106,25 +108,25 @@ class SceneM extends Phaser.Scene{
      shtxt2= this.add.text(236, 40, 'Control bindings', minitextstyle);
      decr = this.add.sprite(102,98,'minus');
      incr = this.add.sprite(298,94, 'plus');
-     //if(fullscreen){                                   // check if fullscreen is enabled, use medium style if it is, small otherwise
-       //sh1e2_5 = this.add.sprite(181, 130, 'check');
-       //sh1e2 = this.add.text(111, 123, "Fullscreen", medtextstyle);
+     if(fullscreen){                                   // check if fullscreen is enabled, use medium style if it is, small otherwise
+       sh1e2_5 = this.add.sprite(181, 130, 'check');
+       sh1e2 = this.add.text(111, 123, "Fullscreen", medtextstyle);
        sh2e1 = this.add.text(111, 80, 'up' ,medtextstyle);
        sh2e2 = this.add.text(111, 120, 'down' ,medtextstyle);
        sh2e3 = this.add.text(111, 160, 'left' ,medtextstyle);
        sh2e4 = this.add.text(111, 200, 'right' ,medtextstyle);
        sh2e5 = this.add.text(111, 240, 'fire/use weapon' ,medtextstyle);
        mapKeycodes(medtextstyle, context);
-     // }else{
-     //  sh1e2_5 = this.add.sprite(165, 130, 'no_check');
-     //  sh1e2 = this.add.text(111, 123, "Fullscreen", minitextstyle);
-     //  sh2e1 = this.add.text(111, 80, 'up' ,minitextstyle);
-     //  sh2e2 = this.add.text(111, 120, 'down' ,minitextstyle);
-     //  sh2e3 = this.add.text(111, 160, 'left' ,minitextstyle);
-     //  sh2e4 = this.add.text(111, 200, 'right' ,minitextstyle);
-     //  sh2e5 = this.add.text(111, 240, 'fire/use weapon' ,minitextstyle);
-     //  mapKeycodes(minitextstyle, context);             // map controls, used for game and for the menu to know what the keys are
-     // }
+     }else{
+      sh1e2_5 = this.add.sprite(165, 130, 'no_check');
+      sh1e2 = this.add.text(111, 123, "Fullscreen", minitextstyle);
+      sh2e1 = this.add.text(111, 80, 'up' ,minitextstyle);
+      sh2e2 = this.add.text(111, 120, 'down' ,minitextstyle);
+      sh2e3 = this.add.text(111, 160, 'left' ,minitextstyle);
+      sh2e4 = this.add.text(111, 200, 'right' ,minitextstyle);
+      sh2e5 = this.add.text(111, 240, 'fire/use weapon' ,minitextstyle);
+      mapKeycodes(minitextstyle, context);             // map controls, used for game and for the menu to know what the keys are
+     }
      sh2e6 = this.add.sprite(271, 90, 'keysbox');
      sh2e7 = this.add.sprite(271, 130, 'keysbox');
      sh2e8 = this.add.sprite(271, 170, 'keysbox');
@@ -142,8 +144,8 @@ class SceneM extends Phaser.Scene{
      sbh1.visible = false;
      sbh2.visible = false;
      sh1e1.visible = false;
-     //sh1e2.visible = false;
-     //sh1e2_5.visible = false;
+     sh1e2.visible = false;
+     sh1e2_5.visible = false;
      shtxt1.visible = false;
      shtxt2.visible = false;
      sh2e1.visible = false;
@@ -193,16 +195,16 @@ class SceneM extends Phaser.Scene{
   clickSettings(){                                                   // hide our text and show settings menu and its various elements
       settingsWindow.visible = true;
       settingsWindow.inputEnabled = true;
-      //sh1e2_5.setInteractive();
-      //sh1e2_5.on('pointerdown', () => this.toggleCheck(context));
+      sh1e2_5.setInteractive();
+      sh1e2_5.on('pointerdown', () => this.toggleCheck(context));
       sbh1.visible = true;
       sh1e1.visible = true;
       shtxt1.visible = true;
       shtxt2.visible = true;
       decr.visible = true;
       incr.visible = true;
-      //sh1e2.visible = true;
-      //sh1e2_5.visible = true;
+      sh1e2.visible = true;
+      sh1e2_5.visible = true;
       decr.setInteractive();
       decr.on('pointerdown', () => lower());
       incr.setInteractive();
@@ -231,8 +233,8 @@ class SceneM extends Phaser.Scene{
     shtxt1.visible = false;
     shtxt2.visible = false;
     sh1e1.visible = false;
-    //sh1e2.visible = false;
-    //sh1e2_5.visible = false;
+    sh1e2.visible = false;
+    sh1e2_5.visible = false;
     sh2e1.visible = false;
     sh2e2.visible = false;
     sh2e3.visible = false;
@@ -334,27 +336,27 @@ class SceneM extends Phaser.Scene{
     sh2e15.on('pointerdown', ()=> this.bindingClicked5(sh2e15, context));
   }
 
-  // toggleCheck(context){                              // toggle for fullscreen, refreshes page upon changing choice, choice is also saved immediately
-  //   var screenSettings;
-  //   if(sh1e2_5.texture.key === 'no_check'){
-  //     sh1e2_5.visible = false;
-  //     sh1e2_5 = null;
-  //     sh1e2_5 = this.add.sprite(165, 130, 'check');
-  //     sh1e2_5.visible = true;
-  //     screenSettings = 1;
-  //     localStorage.setItem("fullscreen", screenSettings);
-  //   }else{
-  //     sh1e2_5.visible = false;
-  //     sh1e2_5 = null;
-  //     sh1e2_5 = this.add.sprite(165, 130, 'no_check');
-  //     sh1e2_5.visible = true;
-  //     screenSettings = 0;
-  //     localStorage.setItem("fullscreen", screenSettings);
-  //   }
-  //   sh1e2_5.setInteractive();
-  //   sh1e2_5.on('pointerdown', () => this.toggleCheck(context));
-  //   location.reload();
-  // }
+  toggleCheck(context){                              // toggle for fullscreen, refreshes page upon changing choice, choice is also saved immediately
+    var screenSettings;
+    if(sh1e2_5.texture.key === 'no_check'){
+      sh1e2_5.visible = false;
+      sh1e2_5 = null;
+      sh1e2_5 = this.add.sprite(165, 130, 'check');
+      sh1e2_5.visible = true;
+      screenSettings = 1;
+      localStorage.setItem("fullscreen", screenSettings);
+    }else{
+      sh1e2_5.visible = false;
+      sh1e2_5 = null;
+      sh1e2_5 = this.add.sprite(165, 130, 'no_check');
+      sh1e2_5.visible = true;
+      screenSettings = 0;
+      localStorage.setItem("fullscreen", screenSettings);
+    }
+    sh1e2_5.setInteractive();
+    sh1e2_5.on('pointerdown', () => this.toggleCheck(context));
+    location.reload();
+  }
 
   async bindingClicked(element, context){         // binding for pc control elements/ key config. some redundancy in having 5 different binding methods
     handler = function(e){

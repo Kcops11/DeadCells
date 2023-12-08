@@ -7,21 +7,13 @@ class Scene1 extends Phaser.Scene{
     this.load.image("room", "assets/images/room.png");
     this.load.image("door", "assets/images/door.png");
     this.load.image("door90", "assets/images/door90.png");
-    this.load.image("menuStatic", "assets/images/Menu.png");
+    
     this.load.image("Menu_frame_1", "assets/images/MenuFrames/Menu_frame_1.png");
     this.load.image("Menu_frame_2", "assets/images/MenuFrames/Menu_frame_2.png");
     this.load.image("Menu_frame_3", "assets/images/MenuFrames/Menu_frame_3.png");
     this.load.image("Menu_frame_4", "assets/images/MenuFrames/Menu_frame_4.png");
     this.load.image("Menu_frame_5", "assets/images/MenuFrames/Menu_frame_5.png");
     this.load.image("Menu_frame_6", "assets/images/MenuFrames/Menu_frame_6.png");
-    this.load.image("character_fighter", "assets/characters/fighter/fighter_right.png");
-    this.load.image("character_paladin", "assets/characters/paladin/paladin_right.png");
-    this.load.image("character_necromancer", "assets/characters/necromancer/necromancer_right.png");
-    this.load.image("character_ranger", "assets/characters/ranger/ranger_right.png");
-    this.load.image("rock_2", "assets/objects/rock_2.png");
-    this.load.image("black_chest", "assets/objects/chest_destroyer.png");
-    this.load.image("green_chest", "assets/objects/green_chest.png");
-    this.load.image("collapsedDoor", "assets/images/collapsedDoor.png");
     this.load.image("Menu_frame_9", "assets/images/MenuFrames/Menu_frame_9.png");
     this.load.image("Menu_frame_10", "assets/images/MenuFrames/Menu_frame_10.png");
     this.load.image("Menu_frame_11", "assets/images/MenuFrames/Menu_frame_11.png");
@@ -68,46 +60,28 @@ class Scene1 extends Phaser.Scene{
     this.load.image("check","assets/images/MenuFrames/fullscreen_checked.png");
     this.load.image("keysbox", "assets/images/MenuFrames/boxforkeys.png");
 
+    this.load.image("character_fighter", "assets/characters/fighter_right.png");
+    this.load.image("character_paladin", "assets/characters/paladin_right.png");
+    this.load.image("character_necromancer", "assets/characters/necromancer_right.png");
+    this.load.image("character_ranger", "assets/characters/ranger_right.png");
+
+
     this.load.spritesheet("explosion", "assets/spritesheets/explosion.png",{
       frameWidth: 16,
       frameHeight: 16
     });
+    //
+    // this.load.spritesheet("power-up", "assets/spritesheets/power-up.png",{
+    //   frameWidth: 16,
+    //   frameHeight: 16
+    // });
 
-    this.load.spritesheet("slime_left", "assets/enemies/slime_left.png",{
+    this.load.spritesheet("enemy_left", "assets/enemies/slime_left.png",{
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("slime_right", "assets/enemies/slime_right.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("ghost_left", "assets/enemies/ghost_left.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-
-    this.load.spritesheet("ghost_right", "assets/enemies/ghost_right.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-
-    this.load.spritesheet("cat_left", "assets/enemies/cat_left.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-
-    this.load.spritesheet("cat_right", "assets/enemies/cat_right.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-
-    this.load.spritesheet("snake_left", "assets/enemies/snek_left.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-
-    this.load.spritesheet("snake_right", "assets/enemies/snek_right.png",{
+    this.load.spritesheet("enemy_right", "assets/enemies/slime_right.png",{
       frameWidth: 32,
       frameHeight: 32
     });
@@ -116,11 +90,11 @@ class Scene1 extends Phaser.Scene{
       frameWidth: 16,
       frameHeight: 24
     });
-    this.load.spritesheet("character_right" , "assets/characters/fighter/fighter_right.png",{
+    this.load.spritesheet("character_right" , "assets/characters/fighter_right.png",{
         frameWidth: 32,
         frameHeight: 32
     });
-	this.load.spritesheet("character_left" , "assets/characters/fighter/fighter_left.png",{
+	this.load.spritesheet("character_left" , "assets/characters/fighter_left.png",{
         frameWidth: 32,
         frameHeight: 32
     });
@@ -130,38 +104,8 @@ class Scene1 extends Phaser.Scene{
        frameHeight: 16
      });
 
-    this.load.spritesheet("fighter_right" , "assets/characters/fighter/fighter_right.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("fighter_left" , "assets/characters/fighter/fighter_left.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("paladin_right" , "assets/characters/paladin/paladin_right.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("paladin_left" , "assets/characters/paladin/paladin_left.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("necromancer_right" , "assets/characters/necromancer/necromancer_right.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("necromancer_left" , "assets/characters/necromancer/necromancer_left.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("ranger_right" , "assets/characters/ranger/ranger_right.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("ranger_left" , "assets/characters/ranger/ranger_left.png",{
-      frameWidth: 32,
-      frameHeight: 32
-    });
+
+
     //
      this.load.bitmapFont("pixelFont", "assets/font/font.png", "assets/font/font.xml");
 
@@ -178,27 +122,6 @@ class Scene1 extends Phaser.Scene{
     //this.scene.start("playGame");
 
 
-    // this.anims.create({
-    //   key: "ship1_anim",
-    //   frames: this.anims.generateFrameNumbers("ship"),
-    //   frameRate: 20,
-    //   repeat: -1
-    // })
-    //
-    // this.anims.create({
-    //   key: "ship2_anim",
-    //   frames: this.anims.generateFrameNumbers("ship2"),
-    //   frameRate: 20,
-    //   repeat: -1
-    // })
-    //
-    // this.anims.create({
-    //   key: "ship3_anim",
-    //   frames: this.anims.generateFrameNumbers("ship3"),
-    //   frameRate: 20,
-    //   repeat: -1
-    // })
-    //
     this.anims.create({
       key: "explode",
       frames: this.anims.generateFrameNumbers("explosion"),

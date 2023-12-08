@@ -11,23 +11,14 @@ class Beam extends Phaser.GameObjects.Sprite{
 	if (scene.direction=="left"){
     this.body.velocity.x = -1000;
 	}
-	else if (scene.direction=="right")
+	else
 	{
 		this.body.velocity.x = 1000;
 	}
-  else if (scene.direction=="up")
-	{
-		this.body.velocity.y = -1000;
-	}
-  else if (scene.direction=="down")
-	{
-		this.body.velocity.y = 1000;
-	}
-
   }
 
   update(){
-    if (this.x < 32 || this.x > 400 || this.y < 20 || this.y > 300){
+    if (this.x < 32 || this.x > 400){
       this.destroy();
       //console.log("beam destroyed");
     }
